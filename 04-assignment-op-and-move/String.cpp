@@ -1,4 +1,4 @@
-#include "String.h"
+﻿#include "String.h"
 #include <cstring>
 #include <iostream>
 
@@ -48,28 +48,32 @@ String::~String()
 
 String::String(String&& other)
 {	
-	std::cout << "Move Copy\n";
+	copy((String&&)other); 
+	// Тук не работеше, защото също трябва 
+	//експлицитно да се каже, че е rvalue
+
+	/*std::cout << "Move Copy\n";
 	m_data = other.m_data;
 	m_size = other.m_size;
 	m_capacity = other.m_capacity;
 
 	other.m_data = nullptr;
 	other.m_size = 0;
-	other.m_capacity = 0;
+	other.m_capacity = 0;*/
 }
 
 String& String::operator=(String&& other)
 {
 	std::cout << "Move operator=\n";
 	if (this != &other) {
-		//copy(other);
-		m_data = other.m_data;
+		copy((String&&)other);
+		/*m_data = other.m_data;
 		m_size = other.m_size;
 		m_capacity = other.m_capacity;
 
 		other.m_data = nullptr;
 		other.m_size = 0;
-		other.m_capacity = 0;
+		other.m_capacity = 0;*/
 	}
 	return *this;
 }
