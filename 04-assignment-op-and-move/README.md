@@ -37,3 +37,5 @@ String& operator=(const String&);
 String(String&&);
 String& operator=(String&&);
 ```
+
+-- to do: ask other students if they go to practicum w/ 7th group
