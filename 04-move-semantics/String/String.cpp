@@ -46,9 +46,10 @@ String::String(String&& other)
 	m_size = other.m_size;
 	m_data = other.m_data;
 
-	m_data = nullptr;
-	m_size = 0;
-	m_capacity = 0;
+	// Тук имаше грешка - нулираха се член-данните вместо тези на подадения обект
+	other.m_data = nullptr;
+	other.m_size = 0;
+	other.m_capacity = 0;
 }
 
 String& String::operator=(String&& other)
@@ -59,9 +60,9 @@ String& String::operator=(String&& other)
 		m_size = other.m_size;
 		m_data = other.m_data;
 
-		m_data = nullptr;
-		m_size = 0;
-		m_capacity = 0;
+		other.m_data = nullptr;
+		other.m_size = 0;
+		other.m_capacity = 0;
 	}
 	return *this;
 }
