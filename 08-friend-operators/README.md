@@ -11,9 +11,9 @@ private:
 }
 
 int compare(const Dog& a, const Dog& b) {
-    if(a == b)
+    if(a.age == b.age)
         return 0;
-    return (a < b ? -1 : 1);
+    return (a.age < b.age ? -1 : 1);
 }
 ```
 - `compare` има достъп до всички членове на `Dog` - и `private`, и `protected`
