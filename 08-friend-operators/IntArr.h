@@ -1,5 +1,6 @@
 ﻿#ifndef __INT_ARR_HEADER_DEFINED__
 #define __INT_ARR_HEADER_DEFINED__
+#include <fstream>
 
 class IntArr {
 public:
@@ -30,6 +31,9 @@ public:
 	// по-голяма от другия или пък дали всички елементи са по-големи
 	friend bool operator>(const IntArr& lhs, const IntArr& rhs); // A > B
 	friend bool operator>=(const IntArr& lhs, const IntArr& rhs); // A >= B
+
+	friend std::ostream& operator<<(std::ostream& os, const IntArr& obj);
+	friend std::istream& operator>>(std::istream& is, const IntArr& obj);
 
 	void print() const;
 
