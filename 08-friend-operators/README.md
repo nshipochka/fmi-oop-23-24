@@ -30,6 +30,7 @@ void print(const Dog& dog);
 
 ## Предефиниране на оператори
 [В cppreference](https://en.cppreference.com/w/cpp/language/operators)
+[Increment/Decrement](https://en.cppreference.com/w/cpp/language/operator_incdec)
 
 *"Предефинираме"* операторите, защото те вече са написани за простите типове в езика, а ние пишем нови за дефинираните от нас.
 
