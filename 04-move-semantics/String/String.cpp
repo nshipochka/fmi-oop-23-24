@@ -58,6 +58,8 @@ String& String::operator=(String&& other)
 	if (this != &other) {
 		m_capacity = other.m_capacity;
 		m_size = other.m_size;
+		
+		delete[] m_data;
 		m_data = other.m_data;
 
 		other.m_data = nullptr;
