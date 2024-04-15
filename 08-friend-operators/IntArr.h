@@ -1,5 +1,4 @@
-﻿#ifndef __INT_ARR_HEADER_DEFINED__
-#define __INT_ARR_HEADER_DEFINED__
+﻿#pragma once
 #include <fstream>
 
 class IntArr {
@@ -14,13 +13,13 @@ public:
 	IntArr& operator+=(int n); // Ще добавим ново число в масива
 	IntArr& operator+=(const IntArr& rhs); // Ще слеем два масива
 	
-	IntArr& operator*=(int n); // Ще умножим по k всички числа в масива
+	IntArr& operator*=(int n); // Ще умножим по n всички числа в масива
 
 	//Префиксно ++А
 	IntArr& operator++(); // Ще увеличим всеки елемент с 1
 
 	//Постфиксно А++
-	IntArr& operator++(int n);
+	IntArr operator++(int n);
 
 	int& operator[](size_t index); // Връщаме елемента на index така, че да може да бъде използван
 
@@ -30,10 +29,13 @@ public:
 	// Можем да си дефинираме каквото поведение ни е удобно, напр. дали сумата на единия е 
 	// по-голяма от другия или пък дали всички елементи са по-големи
 	friend bool operator>(const IntArr& lhs, const IntArr& rhs); // A > B
+	friend bool operator<(const IntArr& lhs, const IntArr& rhs); // A < B
+	
 	friend bool operator>=(const IntArr& lhs, const IntArr& rhs); // A >= B
+	friend bool operator<=(const IntArr& lhs, const IntArr& rhs);
 
 	friend std::ostream& operator<<(std::ostream& os, const IntArr& obj);
-	friend std::istream& operator>>(std::istream& is, const IntArr& obj);
+	friend std::istream& operator>>(std::istream& is, IntArr& obj);
 
 	void print() const;
 
@@ -52,4 +54,3 @@ IntArr operator+(const IntArr& lhs, int rhs); // B = A + 1
 IntArr operator+(const IntArr& lhs, const IntArr& rhs); // B = A + C
 IntArr operator*(const IntArr& lhs, int rhs); // B = A * 2
 
-#endif //__INT_ARR_HEADER_DEFINED__

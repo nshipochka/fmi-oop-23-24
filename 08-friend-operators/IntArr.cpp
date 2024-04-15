@@ -28,9 +28,62 @@ IntArr::~IntArr() {
 	clear();
 }
 
+bool IntArr::operator!() const {
+	return size == 0;
+}
+
+IntArr& IntArr::operator+=(int n) {
+	if (size == capacity)
+		resize();
+
+	arr[size] = n;
+	size++;
+
+	return *this;
+}
+
+IntArr& IntArr::operator+=(const IntArr& rhs)
+{	
+	/*if (size + rhs.size >= capacity) {
+		resize(rhs.capacity);
+	}
+	for (size_t i = size; i < size + rhs.size; ++i) {
+		arr[i] = rhs.arr[i - rhs.size];
+	}*/
+	return *this;
+}
+
+IntArr& IntArr::operator*=(int n) {
+	for (size_t i = 0; i < size; ++i)
+		arr[i] *= n;
+
+	return *this;
+}
+
+IntArr& IntArr::operator++()
+{
+	for (size_t i = 0; i < size; ++i)
+		++arr[i];
+
+	return *this;
+}
+
+IntArr IntArr::operator++(int n)
+{
+	IntArr old = *this;
+	this->operator++();
+	return old;
+}
+
+int& IntArr::operator[](size_t index) {
+	return arr[index];
+}
+
 //
 // Operators
 //
+
+
 
 //
 // Other Members
@@ -77,3 +130,83 @@ void IntArr::resize() {
 	arr = temp;
 	capacity *= 2;
 }
+
+bool operator==(const IntArr& lhs, const IntArr& rhs) {
+	if (lhs.size != rhs.size)
+		return false;
+
+	for (size_t i = 0; i < lhs.size; i++)
+		if (lhs.arr[i] != rhs.arr[i])
+			return false;
+
+	return true;
+}
+
+bool operator!=(const IntArr& lhs, const IntArr& rhs)
+{
+	return !(lhs == rhs);
+}
+
+bool operator>(const IntArr& lhs, const IntArr& rhs) {
+	size_t size = std::min({ lhs.size, rhs.size });
+	for (size_t i = 0; i < size; ++i) {
+		if (lhs.arr[i] <= rhs.arr[i])
+			return false;
+	}
+
+	return true;
+}
+
+bool operator<(const IntArr& lhs, const IntArr& rhs)
+{
+	size_t size = std::min({ lhs.size, rhs.size });
+	for (size_t i = 0; i < size; ++i) {
+		if (lhs.arr[i] >= rhs.arr[i])
+			return false;
+	}
+
+	return true;
+}
+
+bool operator>=(const IntArr& lhs, const IntArr& rhs)
+{
+	return !(lhs < rhs);
+}
+
+bool operator<=(const IntArr& lhs, const IntArr& rhs)
+{
+	return !(lhs > rhs);
+}
+
+std::ostream& operator<<(std::ostream& os, const IntArr& obj)
+{	
+	for (size_t i = 0; i < obj.size - 1; ++i) {
+		os << obj.arr[i] << " ";
+	}
+	os << obj.arr[obj.size - 1];
+	return os;
+}
+
+std::istream& operator>>(std::istream& is, IntArr& obj)
+{	
+	char c = 0;
+	int num = 0;
+	while (is >> num) {
+		obj += num;
+		is.get(c);
+		if (c != ' ') break;
+	}
+	
+	return is;
+}
+
+IntArr operator+(const IntArr& lhs, int rhs) {
+	IntArr result = lhs;
+	result += rhs;
+	return result;
+}
+
+
+
+
+
