@@ -81,12 +81,13 @@ Base::Base(const Base& other)
 
 ```cpp
 Derived::Derived() 
-    : Base(), // Трябва да викнем конструктор на Base - избираме дефолтния, защото и тук пишем дефолтен конструктор
+    : Base(), // Ако не го викнем, понеже е дефолтния, се вика по подразбиране от компилатора
+              // Ако няма дефолтен, експлицитно трябва някой друг да викнем
     derived_str(nullptr)
 {}
 
 Derived::Derived(const char* base_str, const char* derived_str) 
-    : Base(base_str) // Трябва да викнем конструктор на Base - избираме си този с аргумент
+    : Base(base_str) // Трябва да викнем конструктор на Base, иначе ще се извика дефолтния - избираме си този с аргумент
 {
     if(!derived_str) this->derived_str = nullptr;
     else{
@@ -109,7 +110,7 @@ Derived::Derived(const char* base_str, const char* derived_str)
 */
 
 Derived::Derived(const Derived& other) 
-    : Base(other) // Трябва да викнем конструктор на Base - избираме копи конструктора 
+    : Base(other) // Трябва да викнем конструктор на Base, иначе ще се извика дефолтния - избираме копи конструктора 
 {
     if(!other.derived_str) derived_str = nullptr;
     else{
