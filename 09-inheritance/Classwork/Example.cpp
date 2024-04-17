@@ -173,6 +173,8 @@ Derived& Derived::operator=(Derived&& other) {
 // Overriding
 
 void Base::print() const {
+    if (!base_str) return;
+
     std::cout << "Base: " << base_str;
 }
 
@@ -183,22 +185,37 @@ void Base::print_newline() const {
 void Derived::print() const {
     Base::print(); 
     print_newline(); 
+    if (!derived_str) return;
     std::cout << "Derived: " << derived_str;
 }
 
 int main() {
-    Base b("Hello"); 
-    b.print(); // Вика Base::print() -> "Base: Hello"
+    std::cout << "d creation: \n";
+    Derived d("d: base string", "d: derived string");
+    //std::cout << "b creation: \n";
+    //Base b("b: base string");
 
-    Derived d("Hello", "World");
-    d.print(); // Вика Derived::print() -> "Base: Hello
-                //                          Derived: World"
+    std::cout << "prints: \n";
+    
+    d.print();
+    std::cout << std::endl;
+   // b.print();
 
-    d.Base::print(); // Вика Base::print() -> "Base: Hello"
+    std::cout << std::endl;
+    std::cout << "destructions: \n";
 
-    Base* ptr = new Derived("Hello", "World");
-    ptr->print();
+    //Base b("Hello"); 
+    //b.print(); // Вика Base::print() -> "Base: Hello"
 
-    delete[] ptr;
+    //Derived d("Hello", "World");
+    //d.print(); // Вика Derived::print() -> "Base: Hello
+    //            //                          Derived: World"
+
+    //d.Base::print(); // Вика Base::print() -> "Base: Hello"
+
+    //Base* ptr = new Derived("Hello", "World");
+    //ptr->print();
+
+    //delete[] ptr;
     return 0;
 }
