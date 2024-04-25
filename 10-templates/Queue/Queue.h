@@ -70,7 +70,7 @@ public:
 
 		Node<T>* curr = first;
 		while (curr != nullptr) {
-			std::cout << curr->data << " ";
+			std::cout << curr->data << std::endl;
 			curr = curr->next;
 		}
 	}
