@@ -381,7 +381,7 @@ std::cout << obj.x;
 г) `template <T> T functionName(T param);`
 
 ---
-    Отговор: б) template <typename T> T functionName(T param); - Това е декларацията на шаблонна функция.
+    Отговор: а) и б) са двата възможни варианта
 
 ---
 
@@ -549,11 +549,11 @@ std::cout << obj.x;
 
 а) AC
 б) BC
-в) CA
-г) CB
+в) CC
+г) AB
 
 ---
-        Отговор: а) AC - Извиква се show от A и C.
+        Отговор: в) CC - през указателите се извиква виртуалния метод show за обект от тип C
 
 ---
 
